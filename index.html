@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>アースマンズ大阪城 設備の使い方</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --ground:#A7B8C3; --card:#FFFFFF; --ink:#2F3A40; --sub:#4A555B; --rule:#D5DDE2;
+  --soft:#F3F6F7; --step:#5E7787; --stepInk:#FFFFFF; --warn:#A3461F; --ok:#2F6E8E;
+  --tab:#FFFFFF; --tabInk:#2F3A40; --tabOn:#2F3A40; --tabOnInk:#FFFFFF;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#1D262C; --card:#283339; --ink:#E7EDF0; --sub:#B7C3CA; --rule:#3D4A52;
+    --soft:#313D44; --step:#8FAABA; --stepInk:#14202A; --warn:#F0956E; --ok:#8CC4E0;
+    --tab:#283339; --tabInk:#E7EDF0; --tabOn:#DCE6EB; --tabOnInk:#1D262C;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#1D262C; --card:#283339; --ink:#E7EDF0; --sub:#B7C3CA; --rule:#3D4A52;
+  --soft:#313D44; --step:#8FAABA; --stepInk:#14202A; --warn:#F0956E; --ok:#8CC4E0;
+  --tab:#283339; --tabInk:#E7EDF0; --tabOn:#DCE6EB; --tabOnInk:#1D262C;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--ground)}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
+body.ko{font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic','Noto Sans JP',sans-serif}
+body.zh{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei','Noto Sans JP',sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:16px 16px 40px}
+.langs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.langs button,.tabs button{font:inherit;border:0;cursor:pointer;min-height:44px;border-radius:6px;
+  background:var(--tab);color:var(--tabInk);font-size:14px;font-weight:500;padding:6px 4px}
+.langs button[aria-pressed="true"],.tabs button[aria-selected="true"]{background:var(--tabOn);color:var(--tabOnInk);font-weight:700}
+button:focus-visible{outline:3px solid #F2B84B;outline-offset:2px}
+header{display:flex;align-items:center;gap:14px;margin:22px 0 16px}
+.icon{width:64px;height:64px;background:var(--card);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.icon svg{width:38px;height:38px;stroke:var(--ink)}
+h1{margin:0;font-size:24px;line-height:1.3;letter-spacing:.03em}
+.where{font-size:14px;color:var(--ink);opacity:.85}
+.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:14px}
+.card{background:var(--card);padding:18px 18px 20px;margin-bottom:12px}
+h2{margin:0 0 12px;font-size:17px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.btn{display:flex;gap:12px;align-items:center;padding:8px 0}
+.chip{width:56px;height:56px;flex-shrink:0;display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;line-height:1.15;color:#1F2A30;background:#E4E8EB;border-radius:50%;box-sizing:border-box}
+.chip.sq{border-radius:8px}
+.bname{font-weight:700;font-size:15px}
+.bdesc{font-size:14px;color:var(--sub)}
+.note{font-size:13px;background:var(--soft);padding:10px 12px;margin-top:10px;color:var(--sub)}
+ol{list-style:none;margin:0;padding:0;counter-reset:s}
+ol li{counter-increment:s;display:flex;gap:12px;font-size:15px;padding:6px 0}
+ol li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--step);color:var(--stepInk);
+  font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.mark{display:flex;gap:12px;font-size:15px;padding:6px 0}
+.mark span{width:28px;height:28px;border-radius:50%;border:2px solid;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.mark.ok span{color:var(--ok)} .mark.ng span{color:var(--warn)}
+.warn{display:flex;gap:12px;align-items:flex-start;font-size:14px}
+.warn b{color:var(--warn);flex-shrink:0}
+footer{font-size:13px;text-align:center;margin-top:18px;color:var(--ink)}
+
+.fac{font-size:13px;letter-spacing:.06em;opacity:.85}
+.hubgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.hubgrid a{background:var(--card);color:var(--ink);text-decoration:none;padding:18px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;font-weight:700;font-size:15px;text-align:center;min-height:44px}
+.hubgrid a svg{width:40px;height:40px;stroke:var(--ink)}
+.photo{background:var(--card);padding:12px;margin-bottom:12px}
+.photo img{display:block;width:auto;max-width:100%;max-height:380px;height:auto;margin:0 auto}
+.photo figcaption{font-size:14px;margin-top:8px;color:var(--sub)}
+.num{position:absolute;top:-6px;left:-6px;width:24px;height:24px;border-radius:50%;background:#E8590C;color:#fff;border:2px solid #fff;font:700 13px/20px sans-serif;text-align:center;box-sizing:border-box}
+.backlink{display:inline-block;margin-top:14px;color:var(--ink);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="langs" role="group" aria-label="Language">
+    <button data-lang="ja">日本語</button><button data-lang="en">English</button><button data-lang="zh">中文</button><button data-lang="ko">한국어</button>
+  </div>
+  <header>
+    <div class="icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h32v32H8z"/><path d="M8 20h32"/><path d="M20 8v32"/></svg></div>
+    <div><div class="fac">アースマンズ大阪城</div><h1 id="title"></h1></div>
+  </header>
+  <main id="main"><div class="hubgrid" id="grid"></div></main>
+  <footer id="foot"></footer>
+</div>
+<script>
+var FAC="アースマンズ大阪城";
+var UI={"ja": {"btns": "ボタンの役割", "warn": "ご注意", "ok": "使える", "ng": "使えない", "trouble": "こんな時は", "foot": "ご不明な点はフロントまでお問い合わせください。", "hub": "設備の使い方", "back": "設備一覧へ"}, "en": {"btns": "What each button does", "warn": "Caution", "ok": "OK", "ng": "Not OK", "trouble": "If something goes wrong", "foot": "If you have any questions, please contact the front desk.", "hub": "How to use the room equipment", "back": "All equipment"}, "zh": {"btns": "按鍵說明", "warn": "注意", "ok": "可使用", "ng": "不可使用", "trouble": "遇到問題時", "foot": "如有任何疑問，請聯絡櫃台。", "hub": "房內設備使用說明", "back": "設備一覽"}, "ko": {"btns": "버튼 설명", "warn": "주의", "ok": "사용 가능", "ng": "사용 불가", "trouble": "이럴 때는", "foot": "궁금한 점은 프런트로 문의해 주세요.", "hub": "객실 설비 사용법", "back": "설비 목록"}};
+var T={"hotwater": {"ja": "給湯器（お湯）", "en": "Water heater (hot water)", "zh": "熱水器（熱水）", "ko": "온수기 (온수)"}, "bathroom": {"ja": "浴室暖房乾燥機", "en": "Bathroom heater & dryer", "zh": "浴室暖風乾燥機", "ko": "욕실 난방 건조기"}, "ih": {"ja": "IHクッキングヒーター", "en": "Induction cooktop (IH)", "zh": "IH電磁爐", "ko": "IH 인덕션"}};
+var ORDER=["hotwater", "bathroom", "ih"];
+var IC={"hotwater": "<path d=\"M10 14h18a4 4 0 0 1 4 4v4\"/><path d=\"M28 22h8\"/><path d=\"M14 14V9h8v5\"/><path d=\"M12 9h12\"/><path d=\"M34 27v3\"/><path d=\"M30 30v3\"/><path d=\"M38 30v3\"/><path d=\"M34 34v3\"/><path d=\"M6 40h36\"/>", "bathroom": "<path d=\"M8 8h32\"/><path d=\"M14 12l-5 5 3 3 3-2v14h12V18l3 2 3-3-5-5\"/><path d=\"M20 12a4 4 0 0 0 8 0\"/><path d=\"M14 8v4\"/><path d=\"M34 8v4\"/><path d=\"M33 22c2 2 2 4 0 6s-2 4 0 6\"/><path d=\"M38 22c2 2 2 4 0 6s-2 4 0 6\"/>", "ih": "<path d=\"M10 20h24v8a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6z\"/><path d=\"M34 22h8\"/><path d=\"M18 20v-2h8v2\"/><path d=\"M19 11c1.5 1.5 1.5 3 0 4.5\"/><path d=\"M25 11c1.5 1.5 1.5 3 0 4.5\"/><rect x=\"6\" y=\"38\" width=\"36\" height=\"5\" rx=\"1\"/>"};
+
+var st={lang:'ja'};
+function pick(){var h=(location.hash||'').replace('#','');if(UI[h]){st.lang=h;return;}
+ try{var s=localStorage.getItem('guide-lang');if(UI[s]){st.lang=s;return;}}catch(e){}
+ var n=(navigator.language||'ja').toLowerCase();
+ st.lang=n.indexOf('ja')===0?'ja':n.indexOf('zh')===0?'zh':n.indexOf('ko')===0?'ko':'en';}
+function setLangUI(){document.documentElement.lang={ja:'ja',en:'en',zh:'zh-Hant',ko:'ko'}[st.lang];
+ document.body.className=st.lang;
+ document.querySelectorAll('.langs button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===st.lang)});}
+document.querySelector('.langs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st.lang=b.dataset.lang;try{localStorage.setItem('guide-lang',st.lang)}catch(x){}render();});
+
+function render(){setLangUI();var u=UI[st.lang];document.getElementById('title').textContent=u.hub;
+ document.getElementById('grid').innerHTML=ORDER.map(function(k){return '<a href="./'+k+'.html"><svg viewBox="0 0 48 48" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[k]+'</svg>'+T[k][st.lang]+'</a>'}).join('');
+ document.getElementById('foot').textContent=u.foot;}
+pick();render();
+</script>
+</body>
+</html>
